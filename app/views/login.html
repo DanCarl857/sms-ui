@@ -6,19 +6,9 @@
       </center>
     </div>
   </div>
-  <div class="row" style="position: relative; top: 20px; left: 2%; padding: 20px; ">
-    <div class="col s5 container">
+  <div class="row" style="position: relative; top: 20px; padding: 20px; ">
+    <div class="col s12">
       <div class="row">
-        <img height=150" width="300" src="images/MifosX_logo.png">
-      </div>
-      <div class="row">
-        <p style="text-align: center">
-          This Bulk SMS platform allows for sending SMSs to a group of clients in bulk or individually.
-        </p>
-      </div>
-    </div>
-    <div class="col s5">
-      <div class="row" style="position: relative; left: 25%;">
         <form name="LoginForm" ng-submit="submitLoginForm(LoginForm.$valid)" class="col s12">
           <div class="row">
             <div class="input-field col s12">
@@ -48,14 +38,16 @@
             </center>
           </div>
           <div class="row">
-            <button type="submit" ng-disabled="LoginForm.$invalid" class="waves-effect waves-light btn right blue lighten-2">
-              Login
-              <i class="icon ion-android-share"></i>
-            </button>
-            <button type="reset" class="waves-effect waves-light btn left red lighten-2">
-              <i class="icon ion-person"></i>
-              Cancel
-            </button>
+            <center>
+              <button type="submit" ng-disabled="LoginForm.$invalid" class="waves-effect waves-light btn blue lighten-2">
+                Login
+                <i class="icon ion-android-share"></i>
+              </button>
+              <button type="reset" class="waves-effect waves-light btn red lighten-2">
+                <i class="icon ion-close"></i>
+                Cancel
+              </button>
+            </center>
           </div>
         </form>
       </div>
