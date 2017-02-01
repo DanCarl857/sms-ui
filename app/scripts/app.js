@@ -45,7 +45,7 @@ angular
       .state('home.message', {
         url: '/message',
         templateUrl: 'views/partials/message.html',
-        controller: 'messageCtrl'
+        controller: 'messagesCtrl'
       })
       .state('home.contacts', {
         url: '/contacts',

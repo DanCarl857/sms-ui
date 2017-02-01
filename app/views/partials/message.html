@@ -1,10 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="row">
+  <div class="row">
+    <div class="col s12">
+      <div class="row">
+        <h4><i class="icon ion-ios-email-outline"></i> Send Message</h4>
+        <hr>
+      </div>
+      <form name="messageForm" ng-submit="submitMessageForm(messageForm.$valid)" class="col s8" style="position: relative; left: 15%;">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="icons ion-person prefix"></i>
+            <input id="from" type="text" class="validate inputFields" required>
+            <label for="from" style="font-size: 15px; padding-left: 2%;">From</label>
+          </div>
+          <div class="input-field col s12">
+            <i class="icons ion-android-globe prefix"></i>
+            <input id="senderName" type="text" class="validate" required>
+            <label for="senderName" style="font-size: 15px; padding-left: 2%;">Sender Name</label>
+          </div>
+          <div>
+            <div class="input-field col s12">
+              <i class="icons ion-ios-people prefix"></i>
+              <input id="to" type="text" class="validate" disabled>
+              <label for="to" style="font-size: 15px; padding-left: 2%;">To</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="icons ion-ios-email prefix"></i>
+            <textarea id="message" class="materialize-textarea"></textarea>
+            <label for="message" style="font-size: 15px; padding-left: 2%;">Message</label>
+          </div>
+        </div>
+        <div class="row">
+          <center>
+            <div class="spinner" ng-show="loading">
+              <img src="images/cubic_loader.gif">
+            </div>
+          </center>
+        </div>
+        <div class="row" ng-show="errorCreds">
+          <center>
+            <p class="help-block">{{errorMsg}}</p>
+          </center>
+        </div>
+        <div class="row">
+          <center>
+            <button type="reset" class="waves-effect waves-light btn red lighten-2">
+              <i class="icon ion-close"></i>
+              Cancel
+            </button>
+            <button type="submit" ng-disabled="messageForm.$invalid" class="waves-effect waves-light btn blue lighten-2">
+              Send Message
+              <i class="icon ion-ios-email"></i>
+            </button>
+          </center>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

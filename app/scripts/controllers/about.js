@@ -8,10 +8,6 @@
  * Controller of the smsUiApp
  */
 angular.module('smsUiApp')
-  .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('AboutCtrl', function ($scope) {
+    $scope.errorCreds = false;
   });

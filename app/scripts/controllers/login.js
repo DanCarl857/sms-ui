@@ -23,7 +23,7 @@ angular.module('smsUiApp')
 
 
         // TODO: obviously remove this
-        $state.transitionTo('home')
+        $state.transitionTo('home.groups');
       };
 
       $scope.loginView = function(){
