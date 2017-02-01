@@ -1,31 +1,37 @@
 <div class="row">
   <div class="row">
-    <div class="col s7" style="position: relative; left: 20%">
-      <form name="DisbursalsForm" ng-submit="submitDisbursalsForm(DisbursalsForm.$valid)" class="col s12">
+    <div class="col s12">
+      <div class="row">
+        <h3><i class="icon ion-person-add"></i> Create Contact</h3>
+        <hr>
+      </div>
+      <form name="messageForm" ng-submit="submitMessageForm(messageForm.$valid)" class="col s8" style="position: relative; left: 15%; top: 30px;">
         <div class="row">
-          <div class="input-field col s12">
-            <input id="disbursedOn" type="text" class="validate inputFields" required>
-            <label for="disbursedOn" style="font-size: 15px; padding-left: 2%;">Disbursed On</label>
+          <div class="col s6">
+            <div class="input-field col s12">
+              <i class="icons ion-person prefix"></i>
+              <input id="firstName" type="text" class="validate inputFields" required>
+              <label for="firstName" style="font-size: 15px; padding-left: 2%;">First Name</label>
+            </div>
+          </div>
+          <div class="col s6">
+            <div class="input-field col s12">
+              <i class="icons ion-android-globe prefix"></i>
+              <input id="lastName" type="text" class="validate" required>
+              <label for="lastName" style="font-size: 15px; padding-left: 2%;">Last Name</label>
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="amount" type="text" class="validate" required>
-            <label for="amount" style="font-size: 15px; padding-left: 2%;">Transaction Amount</label>
-          </div>
-          <p ng-show="DisbursalsForm.amount.$invalid && !DisbursalsForm.amount.$pristine" class="help-block">Amount is required</p>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
+            <i class="icons ion-android-call prefix"></i>
             <input id="phone" type="text" class="validate" required>
             <label for="phone" style="font-size: 15px; padding-left: 2%;">Phone Number</label>
           </div>
-          <p ng-show="DisbursalsForm.phone.$invalid && !DisbursalsForm.phone.$pristine" class="help-block">Phone Number is required</p>
-        </div>
-        <div class="row">
           <div class="input-field col s12">
-            <textarea id="notes" class="materialize-textarea"></textarea>
-            <label for="notes">Notes</label>
+            <i class="icons ion-planet prefix"></i>
+            <input id="countryCode" type="text" class="validate" required>
+            <label for="countryCode" style="font-size: 15px; padding-left: 2%;">Country Code</label>
           </div>
         </div>
         <div class="row">
@@ -41,14 +47,16 @@
           </center>
         </div>
         <div class="row">
-          <button type="submit" ng-disabled="DisbursalsForm.$invalid" class="waves-effect waves-light btn right blue lighten-2">
-            Submit
-            <i class="icon ion-android-share"></i>
-          </button>
-          <button type="reset" class="waves-effect waves-light btn left red lighten-2">
-            <i class="icon ion-close"></i>
-            Cancel
-          </button>
+          <center>
+            <button type="reset" class="waves-effect waves-light btn red lighten-2">
+              <i class="icon ion-close"></i>
+              Cancel
+            </button>&nbsp;
+            <button type="submit" ng-disabled="messageForm.$invalid" class="waves-effect waves-light btn blue lighten-2">
+              Submit
+              <i class="icon ion-ios-email"></i>
+            </button>
+          </center>
         </div>
       </form>
     </div>
