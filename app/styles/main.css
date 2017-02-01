@@ -44,7 +44,7 @@ body{
   position: relative;
   top: 80px;
   left: 0%;
-  width: 60%;
+  width: 30%;
   height: 70%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.24), 0 5px 10px rgba(0, 0, 0, 0.48);
 }
@@ -107,4 +107,17 @@ body{
 .topify-large {
   position: relative;
   top: 60px;
+}
+
+.homePage {
+  background-color: lightgrey;
+}
+
+.groupDiv {
+  margin-bottom: 30px;
+}
+
+.mainDiv {
+  background-color: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.24), 0 5px 10px rgba(0, 0, 0, 0.48);
 }

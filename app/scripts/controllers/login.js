@@ -21,6 +21,9 @@ angular.module('smsUiApp')
 
         $scope.loading = true;
 
+
+        // TODO: obviously remove this
+        $state.transitionTo('home')
       };
 
       $scope.loginView = function(){
