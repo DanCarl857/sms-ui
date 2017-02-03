@@ -11,7 +11,7 @@
   </head>
   <body ng-app="smsUiApp">
   <div ng-include="'/views/util/navigation.html'" ng-if="location.path() !== '/login'"></div>
-    <div ui-view=""></div>
+    <div style="background-color: #f0f8ff" ui-view=""></div>
 
     <script src="scripts/libs/jquery-2.1.4.min.js"></script>
     <script src="scripts/libs/angular.js"></script>
@@ -34,5 +34,6 @@
         <script src="scripts/controllers/partials/group.js"></script>
         <script src="scripts/controllers/partials/groups.js"></script>
         <script src="scripts/controllers/partials/message.js"></script>
+        <script src="scripts/controllers/util/navigation.js"></script>
 </body>
 </html>

@@ -33,6 +33,7 @@ body{
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background-color: #f0f8ff;
 }
 
 #username, #password, #senderName, #to, #from, #message, #firstName, #lastName,
@@ -47,7 +48,12 @@ body{
   left: 0%;
   width: 30%;
   height: 70%;
+  background-color: #fafcff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.24), 0 5px 10px rgba(0, 0, 0, 0.48);
+}
+
+.bodyColor {
+  background-color: #f0f8ff;
 }
 
 .extraLargeText {
@@ -83,14 +89,6 @@ body{
 
 .icon-size-large { font-size: 48px; }
 
-.sideBar {
-  font-size: 16px;
-  width:100%;
-  height:1000px;
-  background-color: #405a99;
-  color: #fff;
-}
-
 .scrollFix {  overflow: auto;  }
 
 .sideMargin {
@@ -111,7 +109,7 @@ body{
 }
 
 .homePage {
-  background-color: #e1e1e1;
+  background-color: #f0f8ff;
 }
 
 .groupDiv {
@@ -119,28 +117,12 @@ body{
   text-align: center;
   position: relative;
   top: 10px;
-  background-color: white;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.24), 0 5px 10px rgba(0, 0, 0, 0.48);
 }
 
 .contactsDiv {
-  position: relative;
-  top: 10px;
-  background-color: white;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.24), 0 5px 10px rgba(0, 0, 0, 0.48);
-  text-align: center;
+
 }
 
 .mainDiv {
-  position: relative;
-  top: 10px;
-  background-color: white;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.24), 0 5px 10px rgba(0, 0, 0, 0.48);
-}
 
-.footerDiv {
-  position: relative;
-  top: 10px;
-  background-color: white;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.24), 0 5px 10px rgba(0, 0, 0, 0.48);
 }
