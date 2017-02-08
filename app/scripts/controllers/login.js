@@ -3,13 +3,14 @@
  * Created by daniel on 1/14/17.
  */
 angular.module('smsUiApp')
-  .controller('userLoginCtrl', ['$scope', '$state', '$rootScope', '$location', '$cookieStore',
-    function ($scope, $state, $rootScope, $location, $cookieStore) {
+  .controller('userLoginCtrl', ['$scope', '$state', '$rootScope', '$location', '$cookieStore', 'AuthService',
+    function ($scope, $state, $rootScope, $location, $cookieStore, AuthService) {
 
       $scope.loading = false;
       $scope.errorCreds = false;
 
       (function initController() {
+        AuthService.clearCredentials();
         $scope.username = "";
         $scope.password = "";
       })();
@@ -21,9 +22,21 @@ angular.module('smsUiApp')
 
         $scope.loading = true;
 
+        AuthService.login($rootScope.username, $rootScope.password)
+          .then(function(response){
 
-        // TODO: obviously remove this
-        $state.transitionTo('home.groups');
+            // TODO: compare passwords
+
+            $rootScope.userId = response.data.id;
+            console.log($rootScope.username);
+            $state.transitionTo('home.message');
+
+          }, function(error) {
+            AuthService.clearCredentials();
+            $scope.loading = false;
+            $scope.errorCreds = true;
+            $scope.errorMsg = "Wrong credentials.";
+          });
       };
 
       $scope.loginView = function(){

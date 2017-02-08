@@ -32,6 +32,11 @@ angular
         templateUrl: 'views/login.html',
         controller: 'userLoginCtrl'
       })
+      .state('home', {
+        url: '/home',
+        templateUrl: 'views/home.html',
+        controller: 'homeCtrl'
+      })
       .state('home.contact', {
         url: '/contact',
         templateUrl: 'views/partials/contact.html',
@@ -56,12 +61,33 @@ angular
         url: '/groups',
         templateUrl: 'views/partials/groups.html',
         controller: 'groupsCtrl'
-      })
-      .state('home', {
-        url: '/home',
-        templateUrl: 'views/home.html',
-        controller: 'homeCtrl'
       });
 
     $urlRouterProvider.otherwise('/login');
+  })
+  .run(function($rootScope, $cookieStore, $location, $http){
+    $rootScope.location = $location;
+    $rootScope.globals = $cookieStore.get('globals') || {};
+
+    if($rootScope.globals.currentUser){
+      $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.authdata;
+    }
+    $rootScope.$on('$stateChangeStart', function(event, next, current){
+      var restrictedPage = $.inArray($location.path, [
+        '/home', '/home/groups', '/home/contacts',
+          '/home/group', '/home/contact', '/home/message']) === -1;
+      var loggedIn = $rootScope.globals.currentUser;
+      console.log("rest: " + restrictedPage);
+      console.log("log: " + !loggedIn);
+      //var loggedIn = $cookieStore.get('user');
+      if(restrictedPage && !loggedIn){
+        $rootScope.displaying = true;
+        $rootScope.username = "";
+        $rootScope.password = "";
+        setTimeout(function(){
+          $location.path('/login');
+        }, 1);
+      }
+    });
   });
+

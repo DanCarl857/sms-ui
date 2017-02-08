@@ -7,11 +7,12 @@
     </div>
   </div>
   <div class="row" style="position: relative; top: 20px; padding: 20px; ">
-    <div class="col s12">
+    <div class="col s11">
       <div class="row">
         <form name="LoginForm" ng-submit="submitLoginForm(LoginForm.$valid)" class="col s12">
           <div class="row">
             <div class="input-field col s12">
+              <i class="icon ion-person prefix"></i>
               <input id="username" type="text" class="validate inputFields" required ng-model="username">
               <label for="username" style="font-size: 15px; padding-left: 2%;">User Name</label>
             </div>
@@ -19,6 +20,7 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
+              <i class="icon ion-key prefix"></i>
               <input id="password" type="password" class="validate" required ng-model="password" ng-minlength="5">
               <label for="password" style="font-size: 15px; padding-left: 2%;">Password</label>
             </div>
@@ -53,7 +55,9 @@
       </div>
     </div>
   </div>
+  <!--
   <div class="row" style="text-align: center; position: relative; top: 10px;">
     <a>Powered by Skylabase &copy;2016</a>
   </div>
+  -->
 </div>

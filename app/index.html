@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/libs/ionicons.css">
     <link rel="stylesheet" href="styles/libs/materialize.css">
+    <link rel="stylesheet" href="styles/libs/intlTelInput.css">
   </head>
   <body ng-app="smsUiApp">
   <div ng-include="'/views/util/navigation.html'" ng-if="location.path() !== '/login'"></div>
@@ -24,8 +25,16 @@
     <script src="scripts/libs/angular-ui-router.js"></script>
     <script src="scripts/libs/dirPagination.js"></script>
     <script src="scripts/libs/materialize.min.js"></script>
+    <script src="scripts/libs/intlTelInput.min.js"></script>
+    <script src="scripts/libs/utils.js"></script>
+
+
 
         <script src="scripts/app.js"></script>
+
+        <script src="scripts/services/AuthService.js"></script>
+        <script src="scripts/services/DataService.js"></script>
+
         <script src="scripts/controllers/index.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/home.js"></script>
