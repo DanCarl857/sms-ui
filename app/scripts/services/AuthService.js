@@ -1,44 +1,53 @@
+'use strict';
 /**
  * Created by daniel on 1/14/17.
  */
-'use strict';
-/**
- * Created by daniel on 1/5/17.
- */
-angular.module('momoUiApp')
+angular.module('smsUiApp')
   .factory('AuthService', ['$http', '$rootScope', '$cookieStore',
     function($http, $rootScope, $cookieStore){
-      $rootScope.BASE_URL = "https://demo.openmf.org/fineract-provider/api/v1/";
+
+      $rootScope.BASE_URL = "http://localhost:8080/api/v2/";
+
+      // TODO: Update all $http to $resource
+
       var AuthService = {};
+
       AuthService.login = function(username, password){
         var loginCreds = {};
         loginCreds.username = username;
         loginCreds.password = password;
+
+        $rootScope.defaultUserName = "daniel";
+        $rootScope.defaultPass = "sms@123";
+
+        var authdata = Base64.encode($rootScope.defaultUserName + ':' + $rootScope.defaultPass);
+
+        $rootScope.globals = {
+          currentUser: {
+            username: $rootScope.defaultUserName,
+            authdata: authdata
+          }
+        };
+
+        $cookieStore.put('globals', $rootScope.globals);
+        $http.defaults.headers.common['Authorization'] = 'Basic ' +  authdata;
+
         var config = {
           cache: false,
           dataType: 'json',
           contentType: "application/json; charset=utf-8"
         };
-        var authKeyRequest = $rootScope.BASE_URL + "authentication?username="+ loginCreds.username + "&password=" +
-          loginCreds.password + "&" + "tenantIdentifier=default";
-        return $http.post(authKeyRequest, config);
+
+        var authKeyRequest = $rootScope.BASE_URL + "users/find/" + loginCreds.username;
+        return $http.get(authKeyRequest, config);
       };
-      AuthService.setCredentials = function(username, password, key){
-        var authdata = Base64.encode(username + ':' + password);
-        $rootScope.globals = {
-          currentUser: {
-            username: username,
-            authdata: authdata
-          }
-        };
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + key;
-        $cookieStore.put('globals', $rootScope.globals);
-      };
+
       AuthService.clearCredentials = function(){
         $rootScope.globals = {};
         $cookieStore.remove('globals');
         $http.defaults.headers.common.Authorization = 'Basic';
       };
+
       var Base64 = {
         keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
         encode: function (input) {

@@ -10,28 +10,31 @@
           <div class="col s6">
             <div class="input-field col s12">
               <i class="icons ion-person prefix"></i>
-              <input id="firstName" type="text" class="validate inputFields" required>
+              <input id="firstName" type="text" class="validate inputFields" ng-model="firstName" required>
               <label for="firstName" style="font-size: 15px; padding-left: 2%;">First Name</label>
+              <p ng-show="messageForm.firstName.$invalid && !messageForm.firstName.$pristine" class="help-block">First name is required.</p>
             </div>
           </div>
           <div class="col s6">
             <div class="input-field col s12">
               <i class="icons ion-android-globe prefix"></i>
-              <input id="lastName" type="text" class="validate" required>
+              <input id="lastName" type="text" class="validate" ng-model="lastName" required>
               <label for="lastName" style="font-size: 15px; padding-left: 2%;">Last Name</label>
+              <p ng-show="messageForm.lastName.$invalid && !messageForm.lastName.$pristine" class="help-block">Last name is required.</p>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <i class="icons ion-android-call prefix"></i>
-            <input id="phone" type="text" class="validate" required>
-            <label for="phone" style="font-size: 15px; padding-left: 2%;">Phone Number</label>
-          </div>
-          <div class="input-field col s12">
-            <i class="icons ion-planet prefix"></i>
-            <input id="countryCode" type="text" class="validate" required>
-            <label for="countryCode" style="font-size: 15px; padding-left: 2%;">Country Code</label>
+            <div class="row">
+              <div class="col s1">
+                <i class="icons ion-planet prefix"></i>&nbsp;&nbsp;
+              </div>
+              <div class="col s11">
+                <input style="padding-left: 50px; border: 1px solid grey;" type="tel" id="phone" class="validate" ng-model="phone" required>
+                <p ng-show="messageForm.phone.$invalid && !messageForm.phone.$pristine" class="help-block">Phone number is required.</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -52,7 +55,7 @@
               <i class="icon ion-close"></i>
               Cancel
             </button>&nbsp;
-            <button type="submit" ng-disabled="messageForm.$invalid" class="waves-effect waves-light btn blue lighten-2">
+            <button type="submit" class="waves-effect waves-light btn blue lighten-2">
               Submit
               <i class="icon ion-ios-email"></i>
             </button>
