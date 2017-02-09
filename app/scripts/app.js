@@ -55,12 +55,19 @@ angular
       .state('home.contacts', {
         url: '/contacts',
         templateUrl: 'views/partials/contacts.html',
-        controller: 'messagesCtrl'
+        controller: 'contactsCtrl'
       })
       .state('home.groups', {
         url: '/groups',
         templateUrl: 'views/partials/groups.html',
         controller: 'groupsCtrl'
+      })
+
+      /* partials */
+      .state('home.delete_group', {
+        url: '/delete_group',
+        templateUrl: '/deleteGroup.htm',
+        controller: 'deleteGroupCtrl'
       });
 
     $urlRouterProvider.otherwise('/login');

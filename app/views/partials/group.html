@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col s12">
       <div class="row">
-        <h3><i class="icon ion-planet"></i> Create Group</h3>
+        <h4><i class="icon ion-planet"></i> Create Group</h4>
         <hr>
       </div>
       <form name="groupForm" ng-submit="submitGroupForm(groupForm.$valid)" class="col s8" style="position: relative; left: 15%; top: 30px;">
@@ -10,16 +10,18 @@
           <div class="col s12">
             <div class="input-field col s12">
               <i class="icons ion-person prefix"></i>
-              <input id="name" type="text" class="validate inputFields" required>
+              <input id="name" type="text" class="validate inputFields" required ng-model="name">
               <label for="name" style="font-size: 15px; padding-left: 2%;">Name</label>
+              <p ng-show="groupForm.name.$invalid && !groupForm.name.$pristine" class="help-block">Group name is required.</p>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <i class="icons ion-android-call prefix"></i>
-            <input id="phone" type="text" class="validate" required>
-            <label for="phone" style="font-size: 15px; padding-left: 2%;">Description</label>
+            <i class="icons ion-edit prefix"></i>
+            <input id="description" type="text" class="validate" required ng-model="description">
+            <label for="description" style="font-size: 15px; padding-left: 2%;">Description</label>
+            <p ng-show="groupForm.description.$invalid && !groupForm.description.$pristine" class="help-block">Description is required.</p>
           </div>
         </div>
         <div class="row">

@@ -1,32 +1,52 @@
 <div class="row">
   <div class="row">
-    <h3><i class="icon ion-ios-people"></i> Contacts</h3>
+    <h4><i class="icon ion-ios-people"></i> Contacts</h4>
     <hr>
   </div>
-  <div class="row" style="">
+  <div class="row">
     <div class="col s8">
-      <div class="input-field col s12">
-        <i class="icons ion-ios-search prefix"></i>
-        <input id="firstName" type="text" class="validate inputFields" required>
-        <label for="firstName" style="font-size: 15px; padding-left: 2%;">Search by Name</label>
-      </div>
+        <div class="input-field col s12">
+          <i class="icons ion-ios-search prefix"></i>
+          <input id="search" type="text" class="validate inputFields" ng-model="contact.searchWord" required>
+          <label for="search" style="font-size: 15px; padding-left: 2%;">Search by Name</label>
+        </div>
     </div>
     <div class="col s1 topify-medium">
-      <button class="btn light-blue" style="margin-right: 6px; font-size: 20px;">
-        <i style="font-size: 15px;" class="icon ion-person"></i>
-      </button>
+      <a ui-sref="home.contact">
+        <button class="btn light-blue" style="margin-right: 6px; font-size: 20px;">
+          <i style="font-size: 15px;" class="icon ion-person-add"></i>
+        </button>
+      </a>
     </div>
     <div class="col s1 topify-medium" style="margin-left: 6px; font-size: 20px;">
-      <button class="btn">
+      <button ng-disabled="!settingsToggle" ng-click="editContact()" data-toggle="modal" data-target="#editModal" class="btn">
         <i style="font-size: 15px;" class="icon ion-gear-b"></i>
       </button>
     </div>
     <div class="col s1 topify-medium" style="margin-left: 6px; font-size: 20px;">
-      <button class="btn red">
+      <button ng-click="trying()" ng-disabled="!toggle" data-toggle="modal" data-target="#confirmModal" class="btn red">
         <i style="font-size: 15px;" class="icon ion-ios-trash"></i>
       </button>
     </div>
+
+    <!-- Modals -->
+
+    <!-- Delete contact confirmation modal -->
+    <div id="confirmModal" class="modal bottom-sheet">
+      <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      </div>
+    </div>
+
+
+    <!-- *******End of Modals ******* -->
   </div>
+
+
   <div class="row">
     <div class="container">
       <table>
@@ -34,6 +54,7 @@
         <tr>
           <th>
             <input type="checkbox" id="check" />
+            <label for="check">Select</label>
           </th>
           <th>Firstname</th>
           <th>Lastname</th>
@@ -42,16 +63,30 @@
         </tr>
         </thead>
 
-        <tbody>
+        <tbody dir-paginate="contact in contacts |filter: contact.searchWord|itemsPerPage: 5">
         <tr>
-          <td><input type="checkbox" id="check" /></td>
-          <td>Alvin</td>
-          <td>Eclair</td>
-          <td>$0.87</td>
-          <td>$0.87</td>
+          <td>
+            <input type="checkbox" id="checkContact-{{contact.id}}" ng-click="eval(contact.selected)" ng-change="add(contact)" ng-model="contact.selected"/>
+            <label for="checkContact-{{contact.id}}">
+              {{contact.id}}
+            </label>
+          </td>
+          <td ng-bind="contact.firstName"></td>
+          <td ng-bind="contact.lastName"></td>
+          <td ng-bind="contact.phoneNumber" ></td>
+          <td ng-bind="contact.countryCode"></td>
         </tr>
         </tbody>
       </table>
+      <div id="paginationThings">
+        <center>
+          <dir-pagination-controls
+            max-size="10"
+            direction-links="true"
+            boundary-links="true">
+          </dir-pagination-controls>
+        </center>
+      </div>
     </div>
   </div>
 </div>

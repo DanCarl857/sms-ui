@@ -1,15 +1,15 @@
 <div ng-controller="navCtrl">
   <div class="navbar-fixed">
-    <nav style="background-color: #01579b;">
+    <nav style="background-color: #64b5f6;">
       <div class="nav-wrapper">
-        <a ui-sref="home.message" class="brand-logo" style="padding-left: 10px;"><img height="55" width="225" src="images/logo.png"></a>
+        <a ui-sref="home.message" class="brand-logo" style="padding-left: 10px;">B-SMS</a>
         <ul class="right hide-on-med-and-down">
           <li><a ui-sref="home.message" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send Message"><i class="icon ion-email"></i></a></li>
           <li><a ui-sref="home.contacts" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Contacts"><i class="icon ion-ios-people"></i> </a></li>
           <li><a ui-sref="home.contact" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="+ Create Contact"><i class="icon ion-person-add"></i> </a></li>
           <li><a ui-sref="home.groups" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View Groups"><i class="icon ion-android-globe"></i></a></li>
           <li><a ui-sref="home.group" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="+ Create Group"><i class="icon ion-planet"></i></a></li>
-          <li><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Logout"><i class="icon ion-coffee"></i> </a></li>
+          <li><a ng-click="logout()" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Logout"><i class="icon ion-coffee"></i> </a></li>
         </ul>
       </div>
     </nav>
