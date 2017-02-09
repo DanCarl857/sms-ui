@@ -10,6 +10,11 @@ angular.module('smsUiApp')
       // TODO: Update all $http to $resource
 
       var DataService = {};
+      var config = {
+        cache: false,
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8"
+      };
 
       DataService.createContact = function(firstName, lastName, phoneNumber, countryCode){
         var url = $rootScope.BASE_URL + "receivers";
@@ -20,14 +25,31 @@ angular.module('smsUiApp')
           "countryCode": countryCode
         };
 
-        var config = {
-          cache: false,
-          dataType: 'json',
-          contentType: "application/json; charset=utf-8"
+        return $http({
+          method: 'POST',
+          url: url,
+          data: data,
+          config: config
+        });
+      };
+
+      DataService.getContacts = function() {
+        var url = $rootScope.BASE_URL + "receivers";
+        return $http.get(url, config);
+      };
+
+      DataService.deleteContact = function(id){
+        var url = $rootScope.BASE_URL + "receivers/" + id;
+        return $http.delete(url.config);
+      };
+
+      DataService.createGroup = function(grpName, description) {
+        var data = {
+          "name": grpName,
+          "description": description
         };
 
-        //$http.defaults.headers.common['Authorization'] = 'Basic ' +  authdata;
-
+        var url = $rootScope.BASE_URL + "groups";
 
         return $http({
           method: 'POST',
@@ -35,6 +57,12 @@ angular.module('smsUiApp')
           data: data,
           config: config
         });
+      };
+
+      DataService.getGroups = function() {
+        var url = $rootScope.BASE_URL + "groups";
+
+        return $http.get(url, config);
       };
 
       return DataService;

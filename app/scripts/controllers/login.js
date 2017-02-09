@@ -29,7 +29,7 @@ angular.module('smsUiApp')
 
             $rootScope.userId = response.data.id;
             console.log($rootScope.username);
-            $state.transitionTo('home.message');
+            $state.transitionTo('home.contacts');
 
           }, function(error) {
             AuthService.clearCredentials();
@@ -38,9 +38,4 @@ angular.module('smsUiApp')
             $scope.errorMsg = "Wrong credentials.";
           });
       };
-
-      $scope.loginView = function(){
-        $state.transitionTo('clients');
-      };
-
     }]);

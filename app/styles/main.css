@@ -32,12 +32,12 @@ body{
   font-size: 14px;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  background-color: #f0f8ff;
+  overflow: auto;
+  /*background-color: #f0f8ff;*/
 }
 
 #username, #password, #senderName, #to, #from, #message, #firstName, #lastName,
-  #phone1, #name{
+  #phone1, #name, #search, #description, #searchWord{
   padding-left: 5px;
   border: 1px solid grey;
 }
@@ -46,14 +46,11 @@ body{
   position: relative;
   top: 80px;
   left: 0%;
+  border-radius: 1%;
   width: 30%;
   height: 70%;
-  background-color: #fafcff;
+  background-color: #e3efff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.24), 0 5px 10px rgba(0, 0, 0, 0.48);
-}
-
-.bodyColor {
-  background-color: #f0f8ff;
 }
 
 .extraLargeText {
@@ -106,10 +103,6 @@ body{
 .topify-large {
   position: relative;
   top: 60px;
-}
-
-.homePage {
-  background-color: #f0f8ff;
 }
 
 .iti-flag {background-image: url("img/flags.png");}

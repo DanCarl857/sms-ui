@@ -12,7 +12,7 @@
   </head>
   <body ng-app="smsUiApp">
   <div ng-include="'/views/util/navigation.html'" ng-if="location.path() !== '/login'"></div>
-    <div style="background-color: #f0f8ff" ui-view=""></div>
+    <div ui-view=""></div>
 
     <script src="scripts/libs/jquery-2.1.4.min.js"></script>
     <script src="scripts/libs/angular.js"></script>
@@ -27,8 +27,6 @@
     <script src="scripts/libs/materialize.min.js"></script>
     <script src="scripts/libs/intlTelInput.min.js"></script>
     <script src="scripts/libs/utils.js"></script>
-
-
 
         <script src="scripts/app.js"></script>
 
