@@ -7,7 +7,7 @@ angular.module('smsUiApp')
 
     $scope.contacts = [];
     $scope.groups = [];
-    $scope.selected_groups = [];
+    $rootScope.selected_groups = [];
     $scope.loading = false;
     $scope.toggle = false;
     var count = 0;
@@ -21,26 +21,24 @@ angular.module('smsUiApp')
         });
     })();
 
-    $scope.addGroup = function (group) {
+    $scope.add = function (group) {
       var data = {
         "id": group.id
       };
       var index = -1;
-      for(var i = 0; i < $scope.selected_groups.length; i++){
-        if($scope.selected_groups[i].id == group.id){
+      for(var i = 0; i < $rootScope.selected_groups.length; i++){
+        if($rootScope.selected_groups[i].id == group.id){
           index = i;
           break;
         }
       }
       if (index == -1 && group.selected) {
-        $scope.selected_groups.push(data);
+        $rootScope.selected_groups.push(data);
       } else if (!group.selected && index != -1) {
-        $scope.selected_groups.splice(index, 1);
+        $rootScope.selected_groups.splice(index, 1);
       }
-
     };
 
-      console.log($scope.selected_groups);
     $scope.eval = function(value){
       if(value){
         count++;
@@ -56,9 +54,22 @@ angular.module('smsUiApp')
       }
     };
   }])
-  .controller('deleteGroupCtrl', ['$scope', 'DataService', function($scope, DataService){
-    $scope.deleteGroup = function(){
-      $scope.selected_groups.forEach(function(grp){
+  .controller('deleteGroupCtrl', ['$scope', '$rootScope', 'DataService', function($scope, $rootScope, DataService){
+    $rootScope.selected_groups.forEach(function(grp){
+      console.log("in delete controller");
+      console.log("Data: " + grp.id);
+      /*DataService.deleteContact(grp.id)
+        .then(function (response) {
+
+        }, function(error) {
+
+        });*/
+    });
+
+    /*$scope.deleteGroup = function(){
+      $rootScope.selected_groups.forEach(function(grp){
+        console.log("in delete controller");
+        console.log("Data: " + grp);
         DataService.deleteContact(grp.id)
           .then(function (response) {
 
@@ -66,5 +77,5 @@ angular.module('smsUiApp')
 
           });
       });
-    }
+    }*/
   }]);
