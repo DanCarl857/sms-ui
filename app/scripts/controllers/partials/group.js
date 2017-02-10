@@ -16,7 +16,11 @@ angular.module('smsUiApp')
           $scope.name = "";
           $scope.description = "";
           $scope.loading = false;
+
+          $rootScope.$broadcast('createGroup', "");
+
           Materialize.toast("Successfully created group", 4000, "rounded");
+
         }, function(error){
           $scope.name = "";
           $scope.description = "";

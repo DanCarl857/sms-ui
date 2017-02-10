@@ -65,7 +65,6 @@ angular.module('smsUiApp')
 
         if (index == -1 && cont.selected) {
           $scope.selected_contacts.push(data);
-          console.log(data);
         } else if (!cont.selected && index != -1) {
           $scope.selected_contacts.splice(index, 1);
         }
