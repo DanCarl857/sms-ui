@@ -36,8 +36,17 @@ body{
   /*background-color: #f0f8ff;*/
 }
 
+.input-field input[type=text]:focus + label {
+  color: #64b5f6;
+}
+
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #64b5f6;
+  box-shadow: 0 1px 0 0 #64b5f6;
+}
+
 #username, #password, #senderName, #to, #from, #message, #firstName, #lastName,
-  #phone1, #name, #search, #description, #searchWord{
+  #phone1, #name, #search, #description, #searchWord, #phone, #countryCode{
   padding-left: 5px;
   border: 1px solid grey;
 }
@@ -46,7 +55,6 @@ body{
   position: relative;
   top: 80px;
   left: 0%;
-  border-radius: 1%;
   width: 30%;
   height: 70%;
   background-color: #e3efff;

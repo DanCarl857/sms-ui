@@ -33,6 +33,24 @@ angular.module('smsUiApp')
         });
       };
 
+      DataService.updateContact = function(id, firstName, lastName, phoneNumber, countryCode) {
+        var url = $rootScope.BASE_URL + "receivers";
+        var data = {
+          "id": id,
+          "firstName": firstName,
+          "lastName": lastName,
+          "phoneNumber": phoneNumber,
+          "countryCode": countryCode
+        };
+
+        return $http({
+          method: 'PUT',
+          url: url,
+          data: data,
+          config: config
+        });
+      };
+
       DataService.getContacts = function() {
         var url = $rootScope.BASE_URL + "receivers";
         return $http.get(url, config);
@@ -40,7 +58,7 @@ angular.module('smsUiApp')
 
       DataService.deleteContact = function(id){
         var url = $rootScope.BASE_URL + "receivers/" + id;
-        return $http.delete(url.config);
+        return $http.delete(url, config);
       };
 
       DataService.createGroup = function(grpName, description) {
@@ -63,6 +81,11 @@ angular.module('smsUiApp')
         var url = $rootScope.BASE_URL + "groups";
 
         return $http.get(url, config);
+      };
+
+      DataService.deleteGroup = function(id) {
+        var url = $rootScope.BASE_URL + "groups/" + id;
+        return $http.delete(url, config);
       };
 
       return DataService;

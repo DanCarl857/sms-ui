@@ -54,28 +54,26 @@ angular.module('smsUiApp')
       }
     };
   }])
-  .controller('deleteGroupCtrl', ['$scope', '$rootScope', 'DataService', function($scope, $rootScope, DataService){
-    $rootScope.selected_groups.forEach(function(grp){
-      console.log("in delete controller");
-      console.log("Data: " + grp.id);
-      /*DataService.deleteContact(grp.id)
-        .then(function (response) {
-
-        }, function(error) {
-
-        });*/
-    });
-
-    /*$scope.deleteGroup = function(){
+  .controller('deleteGroupCtrl', ['$scope', '$rootScope', 'DataService', '$window',
+    function($scope, $rootScope, DataService, $window){
+    $scope.deleteGroup = function(){
       $rootScope.selected_groups.forEach(function(grp){
         console.log("in delete controller");
         console.log("Data: " + grp);
-        DataService.deleteContact(grp.id)
+        DataService.deleteGroup(grp.id)
           .then(function (response) {
-
+            $rootScope.$broadcast('groupUpdated', "");
           }, function(error) {
-
+            Materialize.toast("Please go back and select a group to delete", 5000);
+            return;
           });
       });
-    }*/
+      // Not really needed but just to be sure
+      $rootScope.$broadcast('groupUpdated', "");
+      Materialize.toast("Successfully deleted group(s).", 5000, 'rounded');
+    };
+
+    $scope.goBack = function() {
+      $window.history.back();
+    }
   }]);

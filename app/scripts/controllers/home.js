@@ -37,11 +37,11 @@ angular.module('smsUiApp')
 
     $scope.getGroups();
 
-    $scope.$on("createGroup", function(event, args){
+    $scope.$on("groupUpdated", function(event, args){
       $scope.getGroups();
     });
 
-    $scope.$on('createClient', function(event, args){
+    $scope.$on('clientUpdated', function(event, args){
       $scope.getContacts();
     });
 

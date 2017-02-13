@@ -17,7 +17,7 @@ angular.module('smsUiApp')
           $scope.description = "";
           $scope.loading = false;
 
-          $rootScope.$broadcast('createGroup', "");
+          $rootScope.$broadcast('groupUpdated', "");
 
           Materialize.toast("Successfully created group", 4000, "rounded");
 

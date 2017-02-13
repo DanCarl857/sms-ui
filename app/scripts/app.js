@@ -64,6 +64,16 @@ angular
       })
 
       /* partials */
+      .state('home.delete_contact', {
+        url: '/delete_contact',
+        templateUrl: '/deleteContact.htm',
+        controller: 'deleteContactCtrl'
+      })
+      .state('home.edit_contact', {
+        url: '/edit_contact',
+        templateUrl: '/editContact.htm',
+        controller: 'editContactCtrl'
+      })
       .state('home.delete_group', {
         url: '/delete_group',
         templateUrl: '/deleteGroup.htm',
