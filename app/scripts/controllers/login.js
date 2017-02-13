@@ -28,8 +28,7 @@ angular.module('smsUiApp')
             // TODO: compare passwords
 
             $rootScope.userId = response.data.id;
-            console.log($rootScope.username);
-            $state.transitionTo('home.contacts');
+            $state.transitionTo('home.message');
 
           }, function(error) {
             AuthService.clearCredentials();

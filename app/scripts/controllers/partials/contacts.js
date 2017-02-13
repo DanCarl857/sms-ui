@@ -14,7 +14,7 @@ angular.module('smsUiApp')
       $scope.loading = false;
       $scope.contacts = [];
       $scope.groups = [];
-      $scope.selected_contacts = [];
+      $rootScope.selected_contacts = [];
 
       (function () {
         DataService.getContacts()
@@ -56,7 +56,7 @@ angular.module('smsUiApp')
         };
 
         var index = -1;
-        for(var i = 0; i < $scope.selected_contacts.length; i++){
+        for(var i = 0; i < $rootScope.selected_contacts.length; i++){
           if($scope.selected_contacts[i].id == cont.id){
             index = i;
             break;
@@ -64,21 +64,17 @@ angular.module('smsUiApp')
         }
 
         if (index == -1 && cont.selected) {
-          $scope.selected_contacts.push(data);
+          $rootScope.selected_contacts.push(data);
         } else if (!cont.selected && index != -1) {
-          $scope.selected_contacts.splice(index, 1);
+          $rootScope.selected_contacts.splice(index, 1);
         }
-      };
-
-      $scope.trying = function(){
-        $('#confirmModal').modal('open');
       };
 
       $scope.makeMultiple = function () {
         $scope.data = {
           "name": $scope.groupName,
           "description" : $scope.description,
-          "receivers": $scope.selected_contacts
+          "receivers": $rootScope.selected_contacts
         };
         $http({
           method: 'POST',
@@ -96,17 +92,6 @@ angular.module('smsUiApp')
         });
       };
 
-      $scope.deleteContact = function(){
-        $scope.selected_contacts.forEach(function(contact){
-          DataService.deleteContact(contact.id)
-            .then(function(response){
-              var message = response;
-            }, function(error){
-              Materialize.toast("Failed to delete contact with name: " + contact.firstName, 4000);
-            })
-        });
-        Materialize.toast("Successfully deleted contacts.", 4000, 'rounded');
-      };
       $scope.editContact = function() {
         $scope.selected_contacts.forEach(function(contact){
           $rootScope.url = 'http://localhost:8080/bulk-smart/api/v1/users/1/receivers/' + contact.id;
@@ -145,4 +130,55 @@ angular.module('smsUiApp')
           location.reload();
         }, function(error){ console.log("Error: " + error.data )});
       };
-  }]);
+  }])
+  .controller('deleteContactCtrl', ['$scope', '$rootScope', 'DataService', '$window',
+    function($scope, $rootScope, DataService, $window){
+      $scope.deleteContact = function(){
+        console.log("dsafasdfasd");
+        $rootScope.selected_contacts.forEach(function(contact){
+          DataService.deleteContact(contact.id)
+            .then(function (response) {
+              $rootScope.$broadcast('clientUpdated', "");
+            }, function(error) {
+              Materialize.toast("Please go back and select a contact to delete", 5000);
+              return;
+            });
+        });
+        // Not really needed but just to be sure
+        $rootScope.$broadcast('clientUpdated', "");
+        Materialize.toast("Successfully deleted contact(s).", 5000, 'rounded');
+      };
+
+      $scope.goBack = function() {
+        $window.history.back();
+      }
+    }])
+  .controller('editContactCtrl', ['$scope', '$rootScope', 'DataService', '$window',
+    function($scope, $rootScope, DataService, $window){
+      var contact = $rootScope.selected_contacts[0];
+      $scope.loading = false;
+
+      $scope.firstName = contact.firstName;
+      $scope.lastName = contact.lastName;
+      $scope.phone = contact.phone;
+      $scope.countryCode = contact.countryCode;
+      $scope.id = contact.id;
+
+      $scope.submitEditForm = function() {
+        $scope.loading = true;
+        DataService.updateContact($scope.id, $scope.firstName, $scope.lastName, $scope.phone, $scope.countryCode)
+          .then(function(response){
+            $scope.loading = false;
+            $rootScope.$broadcast('clientUpdated', "");
+            Materialize.toast("Successfully updated client", 3000, 'rounded');
+          }, function(error){
+            $scope.loading = false;
+            Materialize.toast("Failed to update client.", 5000);
+          });
+      };
+
+      $scope.goBack = function() {
+        $window.history.back();
+      }
+    }]);
+

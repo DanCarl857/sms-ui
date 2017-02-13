@@ -38,7 +38,7 @@ angular.module('smsUiApp')
           $scope.loading = false;
           Materialize.toast('Successfully created client', 4000, 'rounded');
 
-          $rootScope.$broadcast('createClient', "");
+          $rootScope.$broadcast('clientUpdated', "");
 
         }, function(error){
 
